@@ -1,40 +1,15 @@
 pipeline {
-
-  agent any
-
-  stages {
-
- /*   stage('Checkout Source') {
-      steps {
-        git branch: "main",
-          // credentialsId: '',
-          url: 'https://github.com/aniketsrivastava0011/s3-static-website.git'
-      }
-    }
-*/
-    stage('Upload to S3') {
-        steps{
-            script {
-
-                dir(){
-
-                    pwd(); //Log current directory
-
-                    withAWS(region:'ap-south-1',credentials:'s3-statis-website') {
-
-                        def identity=awsIdentity();//Log AWS credentials
-
-                        // Upload files from working directory '' in your project workspace
-                        s3Upload(bucket:"s3-static-website", workingDir:'', includePathPattern:'**/*');
-                        // invalidate CloudFront distribution
-                       // cfInvalidate(distribution:'E152QNNVYS423', paths:['/*'])
-                    }
-
-                };
+    agent any
+pipeline {
+    agent any
+    stages {
+        stage('deploy') {
+            steps {
+              sh "aws configure set region $AWS_DEFAULT_REGION" 
+              sh "aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID"  
+              sh "aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY"
+              sh "aws s3 cp index.html s3://s3-staticwebsite-test"
             }
         }
     }
-
-  }
-
 }
