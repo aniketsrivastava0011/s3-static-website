@@ -16,7 +16,7 @@ pipeline {
         steps{
             script {
 
-                dir('/'){
+                dir(){
 
                     pwd(); //Log current directory
 
