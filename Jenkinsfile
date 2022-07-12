@@ -4,14 +4,14 @@ pipeline {
 
   stages {
 
-    stage('Checkout Source') {
+ /*   stage('Checkout Source') {
       steps {
         git branch: "main",
           // credentialsId: '',
           url: 'https://github.com/aniketsrivastava0011/s3-static-website.git'
       }
     }
-
+*/
     stage('Upload to S3') {
         steps{
             script {
