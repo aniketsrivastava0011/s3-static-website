@@ -25,7 +25,7 @@ pipeline {
                         def identity=awsIdentity();//Log AWS credentials
 
                         // Upload files from working directory '' in your project workspace
-                        s3Upload(bucket:"s3-static-website", workingDir:'', includePathPattern:'**/*');
+                        s3Upload(bucket:"s3-staticwebsite-test", workingDir:'', includePathPattern:'**/*');
                         // invalidate CloudFront distribution
                        // cfInvalidate(distribution:'E152QNNVYS423', paths:['/*'])
                     }
